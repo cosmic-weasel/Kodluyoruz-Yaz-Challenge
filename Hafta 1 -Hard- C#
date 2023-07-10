@@ -1,0 +1,55 @@
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Console.Write("Hedef sayıyı girin: ");
+        int hedefSayi = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Dizi boyutunu girin: ");
+        int diziBoyutu = Convert.ToInt32(Console.ReadLine());
+
+        int[] sayiDizisi = new int[diziBoyutu];
+        for (int i = 0; i < diziBoyutu; i++)
+        {
+            Console.Write($"Sayı {i + 1}: ");
+            sayiDizisi[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        List<List<int>> kombinasyonlar = KombinasyonlariBul(sayiDizisi, hedefSayi);
+
+        Console.WriteLine($"Hedef sayıya ulaşan kombinasyonlar ({hedefSayi}):");
+        foreach (List<int> kombinasyon in kombinasyonlar)
+        {
+            Console.WriteLine(string.Join(", ", kombinasyon));
+        }
+    }
+
+    static List<List<int>> KombinasyonlariBul(int[] sayilar, int hedef)
+    {
+        List<List<int>> kombinasyonlar = new List<List<int>>();
+        KombinasyonlariBul(sayilar, hedef, new List<int>(), kombinasyonlar, 0);
+        return kombinasyonlar;
+    }
+
+    static void KombinasyonlariBul(int[] sayilar, int hedef, List<int> mevcutKombinasyon, List<List<int>> kombinasyonlar, int index)
+    {
+        if (hedef == 0)
+        {
+            kombinasyonlar.Add(new List<int>(mevcutKombinasyon));
+            return;
+        }
+
+        for (int i = index; i < sayilar.Length; i++)
+        {
+            if (sayilar[i] <= hedef)
+            {
+                mevcutKombinasyon.Add(sayilar[i]);
+                KombinasyonlariBul(sayilar, hedef - sayilar[i], mevcutKombinasyon, kombinasyonlar, i);
+                mevcutKombinasyon.RemoveAt(mevcutKombinasyon.Count - 1);
+            }
+        }
+    }
+}
