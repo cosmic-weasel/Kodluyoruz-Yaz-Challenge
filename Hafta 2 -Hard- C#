@@ -1,0 +1,31 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        // Kullanıcıdan birim maliyet ve birim satış fiyatını alalım
+        Console.Write("Birim Maliyeti Girin: ");
+        decimal birimMaliyet = Convert.ToDecimal(Console.ReadLine());
+
+        Console.Write("Birim Satış Fiyatı Girin: ");
+        decimal birimSatisFiyati = Convert.ToDecimal(Console.ReadLine());
+
+        // Karı hesaplamak için fonksiyonu çağıralım
+        int karAdet = KarHesapla(birimMaliyet, birimSatisFiyati);
+
+        // Sonucu ekrana yazdıralım
+        Console.WriteLine($"Kar elde etmek için satılması gereken adet: {karAdet}");
+    }
+
+    static int KarHesapla(decimal birimMaliyet, decimal birimSatisFiyati)
+    {
+        // Kar hesabını yapmak için birim maliyet ve birim satış fiyatı arasındaki farkı bulalım
+        decimal karFarki = birimSatisFiyati - birimMaliyet;
+
+        // Kar elde etmek için gerekli adet miktarını hesaplayalım
+        int karAdet = (int)Math.Ceiling(1 / (karFarki / birimMaliyet));
+
+        return karAdet;
+    }
+}
