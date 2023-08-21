@@ -1,0 +1,49 @@
+using System;
+
+namespace ArmstrongSayisiKontrolu
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Bir sayı girin: ");
+            int sayi = int.Parse(Console.ReadLine());
+
+            if (IsArmstrongNumber(sayi))
+            {
+                Console.WriteLine($"{sayi} bir Armstrong sayısıdır.");
+            }
+            else
+            {
+                Console.WriteLine($"{sayi} bir Armstrong sayısı değildir.");
+            }
+        }
+
+        static bool IsArmstrongNumber(int number)
+        {
+            int originalNumber = number;
+            int basamakSayisi = GetDigitCount(number);
+            int toplam = 0;
+
+            while (number > 0)
+            {
+                int basamak = number % 10;
+                toplam += (int)Math.Pow(basamak, basamakSayisi);
+                number /= 10;
+            }
+
+            return toplam == originalNumber;
+        }
+
+        static int GetDigitCount(int number)
+        {
+            int count = 0;
+            while (number > 0)
+            {
+                number /= 10;
+                count++;
+            }
+            return count;
+        }
+    }
+}
