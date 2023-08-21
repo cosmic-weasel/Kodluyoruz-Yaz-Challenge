@@ -1,0 +1,32 @@
+using System;
+
+namespace SesliHarfSayacı
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Bir metin girin: ");
+            string metin = Console.ReadLine();
+
+            int sesliHarfSayısı = SaySesliHarfler(metin);
+            Console.WriteLine($"Girilen metinde {sesliHarfSayısı} adet sesli harf bulunmaktadır.");
+        }
+
+        static int SaySesliHarfler(string metin)
+        {
+            metin = metin.ToLower(); // Metni küçük harflere çeviriyoruz
+            int sesliHarfSayısı = 0;
+
+            foreach (char harf in metin)
+            {
+                if (harf == 'a' || harf == 'e' || harf == 'ı' || harf == 'i' || harf == 'o' || harf == 'ö' || harf == 'u' || harf == 'ü')
+                {
+                    sesliHarfSayısı++;
+                }
+            }
+
+            return sesliHarfSayısı;
+        }
+    }
+}
