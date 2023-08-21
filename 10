@@ -1,0 +1,31 @@
+using System;
+
+namespace TamBolenlerToplami
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Bir sayı girin: ");
+            int sayi = int.Parse(Console.ReadLine());
+
+            int toplam = CalculateDivisorsSum(sayi);
+            Console.WriteLine($"Girilen sayının tam bölenlerinin toplamı: {toplam}");
+        }
+
+        static int CalculateDivisorsSum(int number)
+        {
+            int toplam = 0;
+
+            for (int i = 1; i <= number; i++)
+            {
+                if (number % i == 0)
+                {
+                    toplam += i;
+                }
+            }
+
+            return toplam;
+        }
+    }
+}
