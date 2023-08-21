@@ -1,0 +1,23 @@
+using System;
+
+namespace HavuzDolumSuresi
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int ilkGirisSure = 10;
+            int ikinciGirisSure = 15;
+            int bosaltmaSure = 30;
+
+            double birinciGirisOrani = 1.0 / ilkGirisSure;
+            double ikinciGirisOrani = 1.0 / ikinciGirisSure;
+            double bosaltmaOrani = -1.0 / bosaltmaSure;
+
+            double toplamOran = birinciGirisOrani + ikinciGirisOrani + bosaltmaOrani;
+            double dolmaSuresi = 1.0 / toplamOran;
+
+            Console.WriteLine($"Havuzun dolması {dolmaSuresi:F2} saat sürer.");
+        }
+    }
+}
