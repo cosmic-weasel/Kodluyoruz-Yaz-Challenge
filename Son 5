@@ -1,0 +1,39 @@
+using System;
+
+namespace KarekokKontrolu
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Bir sayı girin: ");
+            double sayi;
+
+            if (double.TryParse(Console.ReadLine(), out sayi))
+            {
+                if (sayi >= 0)
+                {
+                    double karekok = Math.Sqrt(sayi);
+                    double yaklasikKarekok = Math.Round(karekok, 6); // Yaklaşık karekök değeri
+
+                    if (Math.Abs(karekok - yaklasikKarekok) < 1e-6) // Kesirli bir hatayı kontrol etmek için küçük bir eşik değeri kullanıyoruz
+                    {
+                        Console.WriteLine($"Girdiğiniz sayının karekökü: {karekok}");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Girdiğiniz sayının tam olarak karekökü alınamıyor.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Negatif sayıların karekökü alınamaz.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Geçerli bir sayı girmediniz.");
+            }
+        }
+    }
+}
