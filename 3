@@ -1,0 +1,30 @@
+using System;
+
+namespace KombinasyonHesaplama
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int toplamOgrenci = 30;
+            int secilecekOgrenciSayisi = 4;
+
+            int kombinasyon = KombinasyonHesapla(toplamOgrenci, secilecekOgrenciSayisi);
+            Console.WriteLine($"{toplamOgrenci} öğrenciden {secilecekOgrenciSayisi} farklı şekilde seçilebilir: {kombinasyon} farklı şekilde.");
+        }
+
+        static int Faktoriyel(int sayi)
+        {
+            if (sayi <= 1)
+                return 1;
+
+            return sayi * Faktoriyel(sayi - 1);
+        }
+
+        static int KombinasyonHesapla(int n, int r)
+        {
+            int kombinasyon = Faktoriyel(n) / (Faktoriyel(r) * Faktoriyel(n - r));
+            return kombinasyon;
+        }
+    }
+}
